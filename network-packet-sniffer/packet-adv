@@ -1,0 +1,64 @@
+from scapy.all import sniff, IP, TCP, UDP, Ether
+from datetime import datetime
+
+# Log file
+LOG_FILE = "packet_log.txt"
+
+# Function to process packets
+def process_packet(packet):
+    print("\n" + "="*60)
+
+    # Timestamp
+    time_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"⏰ Time: {time_now}")
+
+    # MAC Address
+    if packet.haslayer(Ether):
+        eth = packet[Ether]
+        print(f"🔗 Source MAC      : {eth.src}")
+        print(f"🔗 Destination MAC : {eth.dst}")
+
+    # IP Layer
+    if packet.haslayer(IP):
+        ip = packet[IP]
+        print(f"🌐 Source IP       : {ip.src}")
+        print(f"🌐 Destination IP  : {ip.dst}")
+
+        protocol = ""
+
+        # TCP
+        if packet.haslayer(TCP):
+            tcp = packet[TCP]
+            protocol = "TCP"
+            print(f"📡 Protocol        : TCP")
+            print(f"🔢 Source Port     : {tcp.sport}")
+            print(f"🔢 Destination Port: {tcp.dport}")
+
+            # HTTP Detection
+            if tcp.dport == 80 or tcp.sport == 80 :
+                print("🌍 HTTP Traffic Detected")
+
+        # UDP
+        elif packet.haslayer(UDP):
+            udp = packet[UDP]
+            protocol = "UDP"
+            print(f"📡 Protocol        : UDP")
+            print(f"🔢 Source Port     : {udp.sport}")
+            print(f"🔢 Destination Port: {udp.dport}")
+
+        else:
+            protocol = "OTHER"
+            print("📡 Protocol        : OTHER")
+
+        # Save logs
+        with open(LOG_FILE, "a") as file:
+            file.write(f"[{time_now}] {ip.src}:{protocol} -> {ip.dst}\n")
+
+    print("="*60)
+
+
+print("🚀 Advanced Packet Sniffer Started...")
+print("Press CTRL + C to stop\n")
+
+# Start sniffing (store=False = no memory usage)
+sniff(prn=process_packet, store=False, count=10)

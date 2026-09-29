@@ -1,0 +1,26 @@
+from scapy.all import sniff, IP
+
+def packet_callback(packet):
+    if packet.haslayer(IP):
+        src_ip = packet[IP].src
+        dst_ip = packet[IP].dst
+        protocol = packet[IP].proto
+
+        if protocol == 6:
+            protocol_name = "TCP"
+        elif protocol == 17:
+            protocol_name = "UDP"
+        elif protocol == 1:
+            protocol_name = "ICMP"
+        else:
+            protocol_name = str(protocol)
+
+        print("\n========================")
+        print("Packet Captured")
+        print("Source IP:", src_ip)
+        print("Destination IP:", dst_ip)
+        print("Protocol:", protocol_name)
+        print("========================")
+
+print("Network Packet Analyzer Started...")
+sniff(prn=packet_callback, count=10)

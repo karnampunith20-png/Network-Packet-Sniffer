@@ -1,0 +1,55 @@
+NETWORK PACKET SNIFFER - DOCUMENTATION
+
+Project Name:
+Network Packet Sniffer
+
+Objective:
+The objective of this project is to capture and analyze network packets in real time. The system extracts important information such as source and destination IP addresses, MAC addresses, protocol types, and stores packet details for monitoring and analysis.
+
+Tools and Technologies Used:
+
+* Python
+* Scapy
+* Npcap
+* File Handling
+
+How the Project Works:
+
+1. The program starts packet sniffing using the Scapy library.
+2. Network packets are captured from the active network interface.
+3. The Ethernet layer is analyzed to extract MAC addresses.
+4. The IP layer is analyzed to extract source and destination IP addresses.
+5. The transport layer is checked to identify TCP or UDP protocols.
+6. Packet details are displayed in real time on the terminal.
+7. Packet information is recorded in a log file for future reference.
+
+Features:
+
+* Real-time packet capture
+* Displays source and destination IP addresses
+* Displays source and destination MAC addresses
+* Detects TCP and UDP protocols
+* Displays port numbers
+* Logs packet information to a file
+* Supports basic network traffic analysis
+
+Project Structure:
+
+* packet_analyzer.py : Main Python program
+* packet_log.txt : Stores captured packet information
+* README.md : Project information
+* documentation.txt : Project documentation
+* screenshots : Contains project screenshots
+* output : Contains output images
+
+Applications:
+
+* Network monitoring
+* Cybersecurity learning
+* Traffic analysis
+* Understanding network protocols
+* Educational packet inspection
+
+Conclusion:
+This project demonstrates how Python and Scapy can be used to capture and analyze network traffic.
+It provides practical exposure to packet sniffing, protocol analysis, and network monitoring concepts that are important in cybersecurity and ethical hacking.
