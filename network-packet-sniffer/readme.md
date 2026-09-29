@@ -4,9 +4,9 @@
 
 ## 👤 Intern Details
 
-* **Intern ID:** CMPZBWGRI0
-* **Full Name:** A DHARANI
-* **Duration:** 4 Weeks
+* **Intern ID:** CMSQ2VSOP1
+* **Full Name:** K Punith
+* **Duration:** 2 months
 * **Project Name:** Network Packet Sniffer
 * **Project Scope:**
   This project captures and analyzes live network packets in real time. It extracts important information such as source and destination IP addresses, MAC addresses, protocol types (TCP/UDP), and stores packet details in a log file for monitoring and basic network analysis purposes.
